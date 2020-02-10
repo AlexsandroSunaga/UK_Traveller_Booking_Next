@@ -1,0 +1,12 @@
+node_modules
+.next
+out
+.env
+.env*.local
+*.log
+tsconfig.tsbuildinfo
+prisma/dev.db
+*.db
+backend/data/*.jsonl
+backend/.venv/
+backend/**/__pycache__/
