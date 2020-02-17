@@ -1,0 +1,148 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model AdminUser {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  passwordHash String
+  name         String
+  createdAt    DateTime @default(now())
+}
+
+model VehicleType {
+  id          String   @id @default(cuid())
+  slug        String   @unique
+  name        String
+  description String
+  example     String
+  passengers  Int
+  luggage     Int
+  handLuggage Int
+  multiplier  Float    @default(1.0)
+  imageUrl    String?
+  sortOrder   Int      @default(0)
+  isActive    Boolean  @default(true)
+  bookings    Booking[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model PricingRule {
+  id              String   @id @default(cuid())
+  name            String
+  baseFare        Float    @default(25)
+  perMileRate     Float    @default(1.85)
+  perMinuteRate   Float    @default(0.35)
+  minimumFare     Float    @default(35)
+  airportFee      Float    @default(5)
+  nightMultiplier Float    @default(1.15)
+  nightStartHour  Int      @default(22)
+  nightEndHour    Int      @default(6)
+  isActive        Boolean  @default(true)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+model SurgeRule {
+  id          String   @id @default(cuid())
+  name        String
+  multiplier  Float    @default(1.0)
+  dayOfWeek   Int?
+  startHour   Int?
+  endHour     Int?
+  isActive    Boolean  @default(false)
+  description String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Customer {
+  id        String    @id @default(cuid())
+  email     String    @unique
+  phone     String
+  firstName String
+  lastName  String
+  bookings  Booking[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+}
+
+model Booking {
+  id              String        @id @default(cuid())
+  reference       String        @unique
+  status          BookingStatus @default(PENDING)
+  pickupAddress   String
+  pickupLat       Float?
+  pickupLng       Float?
+  dropoffAddress  String
+  dropoffLat      Float?
+  dropoffLng      Float?
+  pickupDate      DateTime
+  pickupTime      String
+  returnDate      DateTime?
+  returnTime      String?
+  isReturn        Boolean       @default(false)
+  distanceMiles   Float
+  durationMinutes Int
+  basePrice       Float
+  vehiclePrice    Float
+  surgeMultiplier Float         @default(1.0)
+  totalPrice      Float
+  paymentMethod   PaymentMethod @default(ONLINE)
+  paymentStatus   PaymentStatus @default(PENDING)
+  flightNumber    String?
+  passengers      Int           @default(1)
+  luggage         Int           @default(1)
+  notes           String?
+  customerId      String
+  customer        Customer      @relation(fields: [customerId], references: [id])
+  vehicleTypeId   String
+  vehicleType     VehicleType   @relation(fields: [vehicleTypeId], references: [id])
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+}
+
+model ApiSetting {
+  id        String   @id @default(cuid())
+  key       String   @unique
+  value     String
+  label     String
+  updatedAt DateTime @updatedAt
+}
+
+model ContactMessage {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  phone     String?
+  subject   String
+  message   String
+  createdAt DateTime @default(now())
+}
+
+enum BookingStatus {
+  PENDING
+  CONFIRMED
+  DISPATCHED
+  COMPLETED
+  CANCELLED
+}
+
+enum PaymentMethod {
+  ONLINE
+  CASH
+  CARD_TO_DRIVER
+}
+
+enum PaymentStatus {
+  PENDING
+  DEPOSIT_PAID
+  PAID
+  REFUNDED
+}
