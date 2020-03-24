@@ -1,0 +1,1038 @@
+/* ─────────────────────────────────────────────────────────────
+   Skyline Airport Transfers — Arctic design system
+   All values are spec-real; safe to lift into Laravel + Bootstrap 5.
+   ───────────────────────────────────────────────────────────── */
+
+:root {
+  /* Logo-aligned palette — sky blue + sunshine yellow */
+  --lat-primary-deep:  #1FA3D6;  /* logo blue, used for CTAs/links */
+  --lat-primary-mid:   #4FB8E0;  /* hover, gradient mid */
+  --lat-primary-light: #E6F6FC;  /* tinted card/section bg */
+  --lat-sky-white:     #F8FCFE;  /* page bg, near-white */
+  --lat-white:         #FFFFFF;
+  --lat-yellow:        #FFCB1F;  /* logo yellow */
+  --lat-yellow-soft:   #FFF3C4;
+  --lat-ink:           #0A2740;  /* deep readable navy-ink, not dark navy fill */
+  --lat-muted:         #5B7A93;
+  --lat-border:        #D5E8F2;
+  --lat-success:       #1FAB66;
+  --lat-danger:        #D43A3A;
+
+  /* Arctic blend — softer, photo-like sky */
+  --lat-arctic: linear-gradient(135deg, #E6F6FC 0%, #BFE6F4 55%, #1FA3D6 100%);
+  --lat-arctic-soft: linear-gradient(180deg, #F8FCFE 0%, #E6F6FC 100%);
+
+  /* Type */
+  --lat-font-display: 'Manrope', system-ui, -apple-system, sans-serif;
+  --lat-font-body:    'Inter', system-ui, -apple-system, sans-serif;
+  --lat-font-num:     'Inter', system-ui, -apple-system, sans-serif;
+
+  /* Spacing scale (4 / 8 / 12 / 16 / 24 / 32 / 48 / 64) */
+  --lat-s1: 4px; --lat-s2: 8px; --lat-s3: 12px; --lat-s4: 16px;
+  --lat-s5: 24px; --lat-s6: 32px; --lat-s7: 48px; --lat-s8: 64px;
+
+  /* Radii */
+  --lat-r-sm: 8px;
+  --lat-r-md: 12px;
+  --lat-r-lg: 16px;
+  --lat-r-xl: 24px;
+  --lat-r-pill: 999px;
+
+  /* Shadows — light, never heavy */
+  --lat-shadow-sm: 0 1px 2px rgba(10,22,40,.04), 0 0 0 1px rgba(10,22,40,.04);
+  --lat-shadow-md: 0 4px 16px rgba(10,22,40,.06), 0 0 0 1px rgba(10,22,40,.04);
+  --lat-shadow-lg: 0 12px 32px rgba(10,22,40,.08), 0 2px 6px rgba(10,22,40,.04);
+  --lat-shadow-focus: 0 0 0 4px rgba(0,80,216,.15);
+}
+
+/* ── Reset (scoped to .lat) ─────────────────────────────────── */
+.lat, .lat * { box-sizing: border-box; }
+.lat {
+  font-family: var(--lat-font-body);
+  font-size: 16px;
+  line-height: 1.55;
+  color: var(--lat-ink);
+  background: var(--lat-sky-white);
+  -webkit-font-smoothing: antialiased;
+  font-feature-settings: 'cv11', 'ss01';
+}
+.lat h1, .lat h2, .lat h3, .lat h4, .lat h5 {
+  font-family: var(--lat-font-display);
+  color: var(--lat-ink);
+  letter-spacing: -0.02em;
+  margin: 0;
+  line-height: 1.1;
+  text-wrap: balance;
+}
+.lat p { margin: 0; text-wrap: pretty; }
+.lat a { color: var(--lat-primary-deep); text-decoration: none; }
+.lat button { font-family: inherit; cursor: pointer; border: none; background: none; }
+
+/* ── Typography utilities ────────────────────────────────────── */
+.lat .eyebrow {
+  font-family: var(--lat-font-body);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--lat-primary-deep);
+}
+.lat .h-display { font-size: 56px; font-weight: 700; letter-spacing: -0.03em; }
+.lat .h-1 { font-size: 40px; font-weight: 700; }
+.lat .h-2 { font-size: 28px; font-weight: 600; }
+.lat .h-3 { font-size: 20px; font-weight: 600; }
+.lat .body-lg { font-size: 17px; line-height: 1.55; color: var(--lat-muted); }
+.lat .body { font-size: 15px; line-height: 1.55; color: var(--lat-muted); }
+.lat .caption { font-size: 13px; color: var(--lat-muted); }
+.lat .num { font-variant-numeric: tabular-nums; font-feature-settings: 'tnum'; }
+
+/* ── Buttons ─────────────────────────────────────────────────── */
+.lat .btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  gap: var(--lat-s2);
+  font-family: var(--lat-font-body);
+  font-weight: 600;
+  font-size: 15px;
+  height: 48px;
+  padding: 0 var(--lat-s5);
+  border-radius: var(--lat-r-md);
+  transition: background .18s, color .18s, box-shadow .18s, transform .12s;
+  white-space: nowrap;
+}
+.lat .btn:focus-visible { outline: none; box-shadow: var(--lat-shadow-focus); }
+.lat .btn:active { transform: translateY(1px); }
+
+.lat .btn-primary {
+  background: var(--lat-primary-deep);
+  color: var(--lat-white);
+}
+.lat .btn-primary:hover { background: var(--lat-primary-mid); box-shadow: 0 6px 16px rgba(0,80,216,.25); }
+
+.lat .btn-secondary {
+  background: var(--lat-primary-light);
+  color: var(--lat-primary-deep);
+  box-shadow: inset 0 0 0 1px var(--lat-border);
+}
+.lat .btn-secondary:hover { background: #DCEDFF; }
+
+.lat .btn-tertiary {
+  background: transparent;
+  color: var(--lat-primary-deep);
+  height: auto; padding: var(--lat-s2) 0;
+}
+.lat .btn-tertiary:hover { color: var(--lat-primary-mid); }
+
+.lat .btn-call {
+  background: var(--lat-white);
+  color: var(--lat-ink);
+  box-shadow: inset 0 0 0 1px var(--lat-border);
+}
+.lat .btn-call:hover { box-shadow: inset 0 0 0 1px var(--lat-primary-deep); color: var(--lat-primary-deep); }
+.lat .btn-call .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--lat-success); box-shadow: 0 0 0 3px rgba(31,171,102,.18); }
+
+.lat .btn-block { width: 100%; }
+.lat .btn-lg { height: 56px; font-size: 16px; padding: 0 var(--lat-s6); }
+.lat .btn-sm { height: 36px; font-size: 13px; padding: 0 var(--lat-s4); border-radius: var(--lat-r-sm); }
+
+/* ── Inputs ──────────────────────────────────────────────────── */
+.lat .field {
+  position: relative;
+  background: var(--lat-white);
+  border-radius: var(--lat-r-md);
+  box-shadow: inset 0 0 0 1px var(--lat-border);
+  transition: box-shadow .18s, background .18s;
+}
+.lat .field:focus-within {
+  box-shadow: inset 0 0 0 1.5px var(--lat-primary-deep), 0 0 0 4px rgba(0,80,216,.12);
+}
+.lat .field.is-error {
+  box-shadow: inset 0 0 0 1.5px var(--lat-danger);
+}
+.lat .field.is-success {
+  box-shadow: inset 0 0 0 1.5px var(--lat-success);
+}
+.lat .field input,
+.lat .field select,
+.lat .field textarea {
+  width: 100%;
+  border: none; outline: none; background: transparent;
+  font-family: inherit;
+  font-size: 16px;
+  color: var(--lat-ink);
+  padding: 22px 16px 10px 44px;
+  height: 60px;
+  border-radius: var(--lat-r-md);
+}
+.lat .field.no-icon input,
+.lat .field.no-icon select,
+.lat .field.no-icon textarea { padding-left: 16px; }
+.lat .field textarea { height: auto; min-height: 96px; padding-top: 28px; }
+.lat .field label {
+  position: absolute;
+  left: 44px; top: 50%;
+  transform: translateY(-50%);
+  font-size: 15px;
+  color: var(--lat-muted);
+  pointer-events: none;
+  transition: transform .18s, font-size .18s, color .18s;
+  background: transparent;
+}
+.lat .field.no-icon label { left: 16px; }
+.lat .field.has-value label,
+.lat .field:focus-within label {
+  transform: translateY(-22px);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--lat-primary-deep);
+  text-transform: uppercase;
+}
+.lat .field .field-icon {
+  position: absolute;
+  left: 14px; top: 50%;
+  transform: translateY(-50%);
+  color: var(--lat-muted);
+  pointer-events: none;
+  display: flex;
+}
+/* Textarea (notes) field: pin label + icon to the top instead of vertical-centre,
+   otherwise they sit in the middle of the box and overlap the typed text. */
+.lat .field.field-area label {
+  top: 28px;
+  transform: none;
+}
+.lat .field.field-area.has-value label,
+.lat .field.field-area:focus-within label {
+  top: 10px;
+  transform: none;
+}
+.lat .field.field-area .field-icon {
+  top: 30px;
+  transform: none;
+}
+.lat .field-help {
+  font-size: 12px;
+  color: var(--lat-muted);
+  padding: 6px 4px 0;
+}
+.lat .field-help.is-error { color: var(--lat-danger); }
+
+/* ── Cards & surfaces ────────────────────────────────────────── */
+.lat .card {
+  background: var(--lat-white);
+  border-radius: var(--lat-r-lg);
+  box-shadow: var(--lat-shadow-sm);
+  border: 1px solid var(--lat-border);
+}
+.lat .card-elev { box-shadow: var(--lat-shadow-lg); border-color: transparent; }
+
+/* ── Pills & badges ──────────────────────────────────────────── */
+.lat .pill {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 6px 12px;
+  font-size: 13px; font-weight: 600;
+  background: var(--lat-white);
+  color: var(--lat-ink);
+  border-radius: var(--lat-r-pill);
+  box-shadow: inset 0 0 0 1px var(--lat-border);
+}
+.lat .pill-trust {
+  background: var(--lat-yellow);
+  color: var(--lat-ink);
+  box-shadow: none;
+}
+.lat .pill-soft {
+  background: var(--lat-yellow-soft);
+  color: #7a5a00;
+  box-shadow: none;
+}
+.lat .pill-success {
+  background: rgba(31,171,102,.12);
+  color: var(--lat-success);
+  box-shadow: none;
+}
+
+/* ── Reassurance row ─────────────────────────────────────────── */
+.lat .reassure {
+  display: flex; flex-wrap: wrap; gap: var(--lat-s5);
+  padding: var(--lat-s4) 0;
+  font-size: 13px; color: var(--lat-ink);
+}
+.lat .reassure span {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-weight: 500;
+}
+.lat .reassure .check {
+  width: 18px; height: 18px; border-radius: 50%;
+  background: var(--lat-primary-light);
+  color: var(--lat-primary-deep);
+  display: inline-flex; align-items: center; justify-content: center;
+}
+
+/* ── Section heading ─────────────────────────────────────────── */
+.lat .section-head { display: flex; flex-direction: column; gap: 8px; margin-bottom: var(--lat-s5); }
+
+/* ── Vehicle card ────────────────────────────────────────────── */
+.lat .vehicle {
+  background: var(--lat-white);
+  border-radius: var(--lat-r-lg);
+  border: 1px solid var(--lat-border);
+  padding: var(--lat-s4);
+  display: grid;
+  grid-template-columns: 110px 1fr auto;
+  gap: var(--lat-s4);
+  align-items: center;
+  transition: border-color .18s, box-shadow .18s;
+}
+.lat .vehicle:hover { border-color: var(--lat-primary-mid); box-shadow: var(--lat-shadow-md); }
+.lat .vehicle.is-selected { border-color: var(--lat-primary-deep); box-shadow: 0 0 0 1px var(--lat-primary-deep), var(--lat-shadow-md); }
+.lat .vehicle .v-illu {
+  background: var(--lat-primary-light);
+  border-radius: var(--lat-r-md);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--lat-primary-deep);
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.lat .vehicle .v-name { font-family: var(--lat-font-display); font-weight: 700; font-size: 17px; }
+.lat .vehicle .v-meta { display: flex; gap: 14px; font-size: 13px; color: var(--lat-muted); margin-top: 2px; }
+.lat .vehicle .v-meta span { display: inline-flex; align-items: center; gap: 4px; }
+.lat .vehicle .v-price { font-family: var(--lat-font-display); font-weight: 700; font-size: 22px; }
+.lat .vehicle .v-cta { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; }
+
+/* ── Sticky mobile CTA bar ───────────────────────────────────── */
+.lat .stickybar {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  background: var(--lat-white);
+  border-top: 1px solid var(--lat-border);
+  padding: 10px 12px calc(10px + env(safe-area-inset-bottom));
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 8px;
+  align-items: center;
+  box-shadow: 0 -4px 20px rgba(10,22,40,.06);
+}
+.lat .stickybar.simple { grid-template-columns: 1fr 1fr; }
+
+/* ── Header ──────────────────────────────────────────────────── */
+.lat .nav {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: var(--lat-s4) var(--lat-s7);
+  min-height: 88px;
+  background: rgba(251,253,255,.85);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--lat-border);
+}
+.lat .nav-links { display: flex; gap: var(--lat-s5); font-size: 14px; font-weight: 500; }
+.lat .nav-links a { color: var(--lat-ink); }
+.lat .nav-links a:hover { color: var(--lat-primary-deep); }
+
+/* ── Logo lockup ─────────────────────────────────────────────── */
+.lat .logo { display: inline-flex; align-items: center; flex: 0 0 auto; }
+.lat .logo img { display: block !important; height: 92px !important; width: auto !important; max-height: 92px; }
+.lat .logo.logo-sm img { height: 56px !important; max-height: 56px; }
+.lat .logo.logo-lg img { height: 72px !important; max-height: 72px; }
+
+/* ── Hero ────────────────────────────────────────────────────── */
+.lat .hero {
+  position: relative;
+  background: var(--lat-arctic-soft);
+  overflow: hidden;
+}
+.lat .hero::before {
+  content: '';
+  position: absolute; right: -10%; top: -20%;
+  width: 60%; height: 140%;
+  background: radial-gradient(closest-side, rgba(46,123,230,.18), transparent 70%);
+  pointer-events: none;
+}
+.lat .hero::after {
+  content: '';
+  position: absolute; left: -15%; bottom: -20%;
+  width: 50%; height: 80%;
+  background: radial-gradient(closest-side, rgba(255,210,63,.14), transparent 70%);
+  pointer-events: none;
+}
+
+/* ── FAQ accordion ───────────────────────────────────────────── */
+.lat .faq {
+  border-bottom: 1px solid var(--lat-border);
+  padding: var(--lat-s4) 0;
+}
+.lat .faq-q {
+  display: flex; justify-content: space-between; align-items: center;
+  font-family: var(--lat-font-display);
+  font-weight: 600; font-size: 16px;
+  cursor: pointer; padding: 0;
+}
+.lat .faq-plus {
+  width: 28px; height: 28px; border-radius: 50%;
+  background: var(--lat-primary-light);
+  color: var(--lat-primary-deep);
+  display: inline-flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.lat .faq-a { font-size: 14px; color: var(--lat-muted); margin-top: 8px; }
+
+/* ── Footer ──────────────────────────────────────────────────── */
+.lat .footer {
+  background: var(--lat-ink);
+  color: rgba(255,255,255,.7);
+  padding: var(--lat-s7) var(--lat-s5) var(--lat-s5);
+  font-size: 14px;
+}
+.lat .footer h5 {
+  color: var(--lat-white);
+  font-size: 13px; font-weight: 600;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  margin-bottom: var(--lat-s3);
+}
+.lat .footer a { color: rgba(255,255,255,.7); display: block; padding: 4px 0; }
+.lat .footer a:hover { color: var(--lat-white); }
+.lat .footer-bot {
+  border-top: 1px solid rgba(255,255,255,.12);
+  margin-top: var(--lat-s5); padding-top: var(--lat-s4);
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: 12px;
+  color: rgba(255,255,255,.5);
+}
+
+/* ── Step indicator ──────────────────────────────────────────── */
+.lat .steps { display: flex; align-items: center; gap: 8px; }
+.lat .step {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 13px; color: var(--lat-muted);
+}
+.lat .step-num {
+  width: 24px; height: 24px; border-radius: 50%;
+  background: var(--lat-white);
+  box-shadow: inset 0 0 0 1.5px var(--lat-border);
+  display: inline-flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: 600;
+}
+.lat .step.is-current .step-num {
+  background: var(--lat-primary-deep);
+  color: var(--lat-white);
+  box-shadow: none;
+}
+.lat .step.is-current { color: var(--lat-ink); font-weight: 600; }
+.lat .step.is-done .step-num {
+  background: var(--lat-primary-light);
+  color: var(--lat-primary-deep);
+  box-shadow: none;
+}
+.lat .step-divider { width: 24px; height: 1px; background: var(--lat-border); }
+
+/* ── Payment radio cards ─────────────────────────────────────── */
+.lat .pay-card {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: var(--lat-s3);
+  align-items: center;
+  padding: var(--lat-s4);
+  border-radius: var(--lat-r-md);
+  border: 1px solid var(--lat-border);
+  background: var(--lat-white);
+  cursor: pointer;
+  transition: border-color .18s, background .18s;
+}
+.lat .pay-card:hover { border-color: var(--lat-primary-mid); }
+.lat .pay-card.is-selected {
+  border-color: var(--lat-primary-deep);
+  background: var(--lat-primary-light);
+  box-shadow: inset 0 0 0 1px var(--lat-primary-deep);
+}
+.lat .pay-card .radio {
+  width: 20px; height: 20px; border-radius: 50%;
+  border: 1.5px solid var(--lat-border);
+  display: inline-flex; align-items: center; justify-content: center;
+}
+.lat .pay-card.is-selected .radio { border-color: var(--lat-primary-deep); }
+.lat .pay-card.is-selected .radio::after {
+  content: ''; width: 10px; height: 10px; border-radius: 50%;
+  background: var(--lat-primary-deep);
+}
+
+/* ── Quote summary card (booking & thank-you) ────────────────── */
+.lat .summary { background: var(--lat-white); border-radius: var(--lat-r-lg); border: 1px solid var(--lat-border); padding: var(--lat-s5); }
+.lat .summary-row { display: flex; justify-content: space-between; padding: 10px 0; font-size: 14px; border-bottom: 1px dashed var(--lat-border); }
+.lat .summary-row:last-of-type { border-bottom: none; }
+.lat .summary-row .l { color: var(--lat-muted); }
+.lat .summary-row .v { color: var(--lat-ink); font-weight: 500; text-align: right; }
+.lat .summary-total { display: flex; justify-content: space-between; align-items: baseline; padding-top: var(--lat-s4); margin-top: var(--lat-s3); border-top: 2px solid var(--lat-ink); }
+.lat .summary-total .v { font-family: var(--lat-font-display); font-weight: 700; font-size: 28px; }
+
+/* ── Route line (pickup → dropoff visual) ────────────────────── */
+.lat .route { position: relative; padding-left: 20px; }
+.lat .route .row { display: flex; gap: 12px; padding: 8px 0; align-items: flex-start; }
+.lat .route .dot {
+  position: absolute; left: 0;
+  width: 12px; height: 12px; border-radius: 50%;
+  background: var(--lat-white);
+  box-shadow: inset 0 0 0 2px var(--lat-primary-deep);
+  margin-top: 12px;
+}
+.lat .route .dot.dest { background: var(--lat-primary-deep); margin-top: 50px; }
+.lat .route .line {
+  position: absolute; left: 5px; top: 24px; bottom: 24px;
+  width: 2px; border-left: 2px dotted var(--lat-primary-mid);
+}
+.lat .route .label { font-size: 11px; color: var(--lat-muted); text-transform: uppercase; letter-spacing: 0.08em; font-weight: 600; }
+.lat .route .place { font-weight: 600; font-size: 14px; }
+
+/* Map placeholder (stripe) */
+.lat .map-placeholder {
+  background:
+    repeating-linear-gradient(135deg, rgba(46,123,230,.08) 0 8px, transparent 8px 16px),
+    var(--lat-primary-light);
+  border-radius: var(--lat-r-md);
+  position: relative;
+  overflow: hidden;
+}
+.lat .map-placeholder::after {
+  content: '';
+  position: absolute; left: 20%; top: 30%;
+  width: 60%; height: 2px;
+  background: var(--lat-primary-deep);
+  border-radius: 2px;
+  box-shadow: 0 0 0 4px rgba(0,80,216,.15);
+  transform: rotate(-12deg);
+}
+
+/* Misc */
+.lat .divider-h { height: 1px; background: var(--lat-border); }
+.lat .stack-2 > * + * { margin-top: 8px; }
+.lat .stack-3 > * + * { margin-top: 12px; }
+.lat .stack-4 > * + * { margin-top: 16px; }
+.lat .stack-5 > * + * { margin-top: 24px; }
+.lat .stack-6 > * + * { margin-top: 32px; }
+.lat .row { display: flex; gap: 12px; }
+.lat .row-between { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.lat .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.lat .muted { color: var(--lat-muted); }
+.lat .tnum { font-variant-numeric: tabular-nums; }
+
+/* ── Mobile artboard chrome ──────────────────────────────────── */
+.lat-phone {
+  width: 375px;
+  border-radius: 32px;
+  background: var(--lat-sky-white);
+  position: relative;
+  overflow: hidden;
+  font-family: var(--lat-font-body);
+}
+.lat-phone .phone-status {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 14px 24px 4px;
+  font-size: 13px; font-weight: 600;
+  background: var(--lat-sky-white);
+}
+.lat-phone .phone-scroll {
+  height: calc(100% - 30px);
+  overflow: hidden;
+  position: relative;
+}
+
+/* ═════════════════════════════════════════════════════════════
+   MOBILE POLISH PASS — appended 2026-05-01
+   75%+ of customers are on mobile. This block tightens spacing,
+   bumps tap targets, and makes the hero/quote-form usable below 768px.
+   ═════════════════════════════════════════════════════════════ */
+
+/* Tablet & below: the redesign uses generous desktop padding (80px) which
+   wastes screen on phones. .lat-pad-d80 already drops to 20px at <768px,
+   but several inline `padding: ... 80px` styles slip through — catch them. */
+@media (max-width: 767.98px) {
+    /* Squash big inline section padding ON the .lat scope */
+    .lat section[style*="padding: 80px 80px"],
+    .lat section[style*="padding: 64px 80px"],
+    .lat section[style*="padding: 56px 80px"],
+    .lat section[style*="padding: 40px 80px"],
+    .lat div[style*="padding: 40px 80px"],
+    .lat div[style*="padding: 64px 80px"] {
+        padding-left: 18px !important;
+        padding-right: 18px !important;
+    }
+    .lat section[style*="padding: 80px 80px"] {
+        padding-top: 56px !important;
+        padding-bottom: 56px !important;
+    }
+    .lat section[style*="padding: 64px 80px"] {
+        padding-top: 48px !important;
+        padding-bottom: 48px !important;
+    }
+
+    /* Hero — fit comfortably on iPhone SE (375px) without clipping */
+    .lat .hero { padding-bottom: 16px !important; }
+    .lat .hero .h-display { font-size: 36px !important; line-height: 1.1; }
+    .lat .pill { font-size: 11px; padding: 5px 10px; }
+
+    /* Section headings — slightly smaller on mobile */
+    .lat .h-1 { font-size: 28px !important; }
+    .lat .h-2 { font-size: 24px !important; }
+    .lat .h-3 { font-size: 16px !important; }
+    .lat .body-lg { font-size: 15px !important; line-height: 1.5; }
+
+    /* Quote widget — comfortable on mobile */
+    .lat .field input,
+    .lat .field select,
+    .lat .field textarea {
+        font-size: 16px; /* prevents iOS zoom on focus */
+    }
+
+    /* Vehicle cards: stack the price under the meta to save horizontal space */
+    .lat .vehicle {
+        grid-template-columns: 88px 1fr !important;
+        gap: 12px !important;
+    }
+    .lat .vehicle .v-illu {
+        width: 88px !important; height: 56px !important;
+    }
+    .lat .vehicle .v-cta {
+        grid-column: 1 / -1;
+        flex-direction: row !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        padding-top: 10px;
+        margin-top: 4px;
+        border-top: 1px solid var(--lat-border);
+    }
+    .lat .vehicle .v-cta .v-price { font-size: 20px !important; }
+
+    /* Summary card on mobile: stop being sticky (it's order: -1 above) */
+    .vehicles-summary, .booking-summary {
+        margin-bottom: 24px;
+    }
+
+    /* Footer: shrink heading + body text, single column for very small phones */
+    .lat footer h5 { font-size: 12px !important; }
+    .lat footer ul a { font-size: 13px !important; line-height: 1.7; }
+
+    /* Hide the desktop-only floating "trip type tabs" if any */
+    .lat .nav { padding: 12px 16px !important; min-height: 64px !important; }
+    .lat .logo img { height: 56px !important; max-height: 56px !important; }
+
+    /* Sticky mobile bar — ensure it's above any other elements */
+    .lat-sticky-mobile {
+        z-index: 1050 !important;
+    }
+
+    /* Reviews belt — slightly faster on mobile so cards visibly move */
+    .reviews-belt { animation-duration: 50s !important; }
+
+    /* Final CTA: compress */
+    .lat section[style*="background: var(--lat-arctic-soft)"] {
+        padding-top: 56px !important;
+        padding-bottom: 56px !important;
+    }
+}
+
+/* Very small (≤380px) — extra-tight */
+@media (max-width: 380px) {
+    .lat .h-display { font-size: 30px !important; }
+    .lat .h-1 { font-size: 24px !important; }
+    .lat .h-2 { font-size: 21px !important; }
+    .lat .vehicle { grid-template-columns: 72px 1fr !important; }
+    .lat .vehicle .v-illu { width: 72px !important; height: 48px !important; }
+}
+
+/* Touch-friendly tap targets */
+@media (hover: none) {
+    .lat .btn { min-height: 48px; }
+    .lat .pay-card { min-height: 64px; }
+    .lat .nav-toggle { width: 44px !important; height: 44px !important; }
+}
+
+/* ═════════════════════════════════════════════════════════════
+   PAGE-OPEN ANIMATIONS — staggered rise-in on hero elements,
+   reduced-motion safe. Used by home hero + layout/page hero.
+   ═════════════════════════════════════════════════════════════ */
+@keyframes latRise {
+    from { opacity: 0; transform: translate3d(0, 14px, 0); }
+    to   { opacity: 1; transform: translate3d(0, 0, 0); }
+}
+.lat-anim {
+    opacity: 0;
+    animation: latRise 620ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    will-change: transform, opacity;
+}
+.lat-anim-1 { animation-delay:  60ms; }
+.lat-anim-2 { animation-delay: 180ms; }
+.lat-anim-3 { animation-delay: 300ms; }
+.lat-anim-4 { animation-delay: 420ms; }
+.lat-anim-5 { animation-delay: 540ms; }
+
+@media (prefers-reduced-motion: reduce) {
+    .lat-anim {
+        animation: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+    }
+}
+
+/* ═════════════════════════════════════════════════════════════
+   HOME HERO — 2-column desktop, vertically centered.
+   Mobile uses display:contents to splice the headline above the
+   quote box and the supporting copy (subhead + USPs) below it,
+   so the quote card peeks above the fold.
+   ═════════════════════════════════════════════════════════════ */
+.lat .hero-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    column-gap: 64px;
+    row-gap: 0;
+    align-items: center;
+}
+.lat .hero-text { display: block; }
+.lat .hero-quote { align-self: center; }
+
+/* ═════════════════════════════════════════════════════════════
+   COMPACT REDESIGN BANNER — full text on desktop, short on mobile.
+   ═════════════════════════════════════════════════════════════ */
+.lat-redesign-banner {
+    background: linear-gradient(95deg, #FFF3C4 0%, #FFE189 100%);
+    border-bottom: 1px solid #F5D58E;
+    color: #5C4400;
+    padding: 10px 20px;
+    font-size: 13px;
+    font-weight: 500;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    text-align: center;
+}
+.lat-redesign-banner-short { display: none; }
+.lat-redesign-dismiss {
+    background: transparent;
+    border: none;
+    color: #5C4400;
+    cursor: pointer;
+    padding: 4px 8px;
+    font-size: 18px;
+    line-height: 1;
+    opacity: .55;
+    transition: opacity 150ms ease;
+}
+.lat-redesign-dismiss:hover { opacity: 1; }
+
+/* Mobile: switch banner to the short copy and tighten padding */
+@media (max-width: 767.98px) {
+    .lat-redesign-banner {
+        padding: 7px 14px;
+        font-size: 12px;
+        gap: 8px;
+    }
+    .lat-redesign-banner-full { display: none; }
+    .lat-redesign-banner-short { display: inline; }
+}
+
+/* ═════════════════════════════════════════════════════════════
+   MOBILE HERO — make the quote card peek above the fold.
+   Strategy: use `display: contents` on .hero-text so its children
+   (.hero-headline + .hero-supporting) participate directly in
+   .hero-grid as siblings of .hero-quote. Then grid-template-areas
+   reorders them: headline → quote → supporting.
+   ═════════════════════════════════════════════════════════════ */
+@media (max-width: 1023.98px) {
+    .lat .hero-grid {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "headline"
+            "quote"
+            "supporting";
+        column-gap: 0;
+        row-gap: 18px;
+        align-items: stretch;
+    }
+    .lat .hero-text { display: contents; }
+    .lat .hero-headline   { grid-area: headline; }
+    .lat .hero-supporting { grid-area: supporting; }
+    .lat .hero-quote      { grid-area: quote; align-self: stretch; }
+}
+
+@media (max-width: 767.98px) {
+    /* Tight top padding so the trust pill sits right under the nav */
+    .lat .hero #hero-quote,
+    .lat #hero-quote { padding-top: 22px !important; padding-bottom: 28px !important; }
+    .lat .hero { padding-bottom: 0 !important; }
+
+    /* Hero typography: smaller, denser */
+    .lat .hero .h-display {
+        font-size: 30px !important;
+        line-height: 1.12 !important;
+        margin-top: 12px !important;
+    }
+    .lat .hero .h-display br { display: none; }
+    .lat .hero .pill-trust {
+        font-size: 10.5px !important;
+        padding: 5px 10px !important;
+        letter-spacing: 0.4px !important;
+    }
+
+    /* Drop the long subhead on mobile (still on desktop). The
+       USPs + reassurance bar carry the value prop. */
+    .lat .hero-subhead { display: none; }
+
+    /* Quote card: tighter padding, less vertical space */
+    .lat #quote-form,
+    .lat .hero-quote .card {
+        padding: 18px !important;
+        border-radius: 16px !important;
+    }
+    .lat .hero-quote .stack-3 { gap: 10px !important; }
+    .lat .hero-quote .field input { padding-top: 18px !important; padding-bottom: 6px !important; }
+
+    /* Tighter row gap on the stacked grid */
+    .lat .hero-grid { row-gap: 14px !important; }
+
+    /* USPs sit BELOW the quote on mobile — give them breathing room */
+    .lat .hero-supporting { margin-top: 4px; }
+    .lat .hero-usps {
+        grid-template-columns: 1fr 1fr !important;
+        gap: 10px 16px !important;
+        margin-top: 0 !important;
+        padding-top: 18px !important;
+    }
+    .lat .hero-usps li { font-size: 13px !important; }
+    .lat .hero-usps li > span:first-child {
+        width: 28px !important;
+        height: 28px !important;
+    }
+    .lat .hero-usps li i { font-size: 14px !important; }
+}
+
+/* iPhone SE & similar narrow phones — extra compression */
+@media (max-width: 380px) {
+    .lat .hero .h-display { font-size: 26px !important; }
+    .lat .hero #hero-quote { padding-top: 18px !important; }
+    .lat .hero-quote .card { padding: 16px !important; }
+}
+
+/* ═════════════════════════════════════════════════════════════
+   MOBILE MINIMALISM — denser sections, calmer visuals.
+   ═════════════════════════════════════════════════════════════ */
+@media (max-width: 767.98px) {
+    /* Section headings: tighter spacing under */
+    .lat .section-head { margin-bottom: 24px; }
+    .lat .section-head .body-lg { margin-top: 8px; }
+
+    /* Decorative dashed connector lines — hide on mobile;
+       they don't render usefully when nodes stack vertically */
+    .lat .how-it-works-connector,
+    .lat .coverage-connector { display: none !important; }
+
+    /* How-it-works + coverage steps stack tighter */
+    .lat .how-it-works-grid {
+        grid-template-columns: 1fr !important;
+        gap: 24px !important;
+    }
+    .lat .coverage-grid {
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 16px !important;
+    }
+    .lat .coverage-strip {
+        grid-template-columns: 1fr !important;
+        gap: 16px !important;
+        padding: 20px !important;
+    }
+
+    /* Reassurance bar: scroll horizontally on tiny screens
+       rather than wrap into 3 ragged rows */
+    .lat .reassure {
+        gap: 16px !important;
+        font-size: 12px !important;
+    }
+
+    /* Page hero (layout/page) tighter */
+    .lat .lat-page-hero {
+        padding-top: 28px !important;
+        padding-bottom: 28px !important;
+    }
+    .lat .lat-page-hero .h-1 { font-size: 26px !important; line-height: 1.15 !important; }
+
+    /* Generic card: rounder, slightly less padding */
+    .lat .card { border-radius: 14px; }
+}
+
+/* ═════════════════════════════════════════════════════════════
+   FOCUS STATES — accessible focus ring across all interactive
+   elements, brand-tinted.
+   ═════════════════════════════════════════════════════════════ */
+.lat .btn:focus-visible,
+.lat .field input:focus-visible,
+.lat .field select:focus-visible,
+.lat .field textarea:focus-visible,
+.lat a:focus-visible,
+.lat button:focus-visible {
+    outline: 2px solid var(--lat-primary-deep);
+    outline-offset: 2px;
+    border-radius: 4px;
+}
+
+/* ═════════════════════════════════════════════════════════════
+   MOBILE BOOKING FORM — fix field disorientation.
+   On narrow screens the date+time grid-2 squashes both fields
+   below comfortable width (icon + native picker UI doesn't fit
+   in ~150px). Stack to single column at <575px.
+   ═════════════════════════════════════════════════════════════ */
+@media (max-width: 575.98px) {
+    /* Stack date/time and other 2-col field grids to single column */
+    .lat .grid-2 {
+        grid-template-columns: 1fr !important;
+        gap: 10px !important;
+    }
+    /* Tighter card padding on narrow screens — gives ~12px more room
+       on each side for fields */
+    .lat #booking-form .card,
+    .lat #booking-form .card[style*="padding: 24px"],
+    .lat #booking-form .card[style*="padding: 20px"] {
+        padding: 18px !important;
+    }
+    /* Field icon + label spacing — keep but ensure label fits without
+       overlapping the value when a long date is selected */
+    .lat .field input,
+    .lat .field select {
+        font-size: 16px !important; /* prevents iOS zoom on focus */
+    }
+    /* M&G tooltip: don't overflow viewport — cap width to viewport
+       minus padding, and right-align if it would clip on the right */
+    .lat #mg-card [data-tip] {
+        width: calc(100vw - 56px) !important;
+        max-width: 320px !important;
+    }
+    /* Booking page two-col summary: drop sticky and tighten spacing */
+    .lat .booking-layout {
+        grid-template-columns: 1fr !important;
+        gap: 16px !important;
+    }
+    .lat .booking-summary {
+        position: static !important;
+        margin-bottom: 16px;
+    }
+    /* Floating-label-help spacing: pull help text closer to its field */
+    .lat .field-help {
+        padding: 4px 4px 0 !important;
+        margin-top: 0 !important;
+        font-size: 12px !important;
+    }
+    /* Pickup details / passenger details / payment headers: tighter */
+    .lat #booking-form .eyebrow {
+        margin-bottom: 12px !important;
+        font-size: 11px !important;
+    }
+    /* Submit button: ensure full-width comfort */
+    .lat #booking-form #submitButton {
+        font-size: 15px !important;
+        padding: 14px 12px !important;
+        min-height: 52px !important;
+    }
+    /* Pay-method card: tighter horizontal layout */
+    .lat .pay-card {
+        padding: 14px !important;
+        gap: 12px !important;
+    }
+}
+
+/* Slightly tighter still on iPhone SE-class (≤375px) */
+@media (max-width: 380px) {
+    .lat #booking-form .card[style*="padding: 24px"],
+    .lat #booking-form .card[style*="padding: 20px"],
+    .lat #booking-form .card { padding: 16px !important; }
+    .lat .field label { font-size: 14px !important; }
+    .lat .field.has-value label,
+    .lat .field:focus-within label { font-size: 10.5px !important; }
+}
+
+/* ═════════════════════════════════════════════════════════════
+   VEHICLE CARD POLISH — clean image presentation.
+   The PNGs are 1400×692 (most) and 1400×781 (Business). They
+   sit on a tinted background which clashes with their white
+   surroundings, and the inconsistent aspect ratios make them
+   look misaligned. Use a neutral white container with a soft
+   ground shadow so the cars feel "placed" rather than floating.
+   ═════════════════════════════════════════════════════════════ */
+.lat .vehicle .v-illu {
+    background: linear-gradient(180deg, #FFFFFF 0%, #F5F8FB 100%) !important;
+    border: 1px solid rgba(12, 29, 54, 0.06);
+    width: 130px !important;
+    height: 78px !important;
+    padding: 8px 10px 6px !important;
+    position: relative;
+}
+.lat .vehicle .v-illu::after {
+    /* Soft ground shadow under each car */
+    content: '';
+    position: absolute;
+    left: 18%;
+    right: 18%;
+    bottom: 4px;
+    height: 6px;
+    background: radial-gradient(ellipse at center, rgba(12, 29, 54, 0.18) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+}
+.lat .vehicle .v-illu img {
+    position: relative;
+    z-index: 1;
+    max-width: 100% !important;
+    max-height: 100% !important;
+    object-fit: contain !important;
+    object-position: center bottom !important;
+}
+.lat .vehicle {
+    grid-template-columns: 130px 1fr auto !important;
+}
+
+/* Vehicle card on tablet/mobile */
+@media (max-width: 991.98px) {
+    .lat .vehicle .v-illu {
+        width: 110px !important;
+        height: 66px !important;
+    }
+    .lat .vehicle {
+        grid-template-columns: 110px 1fr auto !important;
+    }
+}
+@media (max-width: 575.98px) {
+    .lat .vehicle .v-illu {
+        width: 96px !important;
+        height: 58px !important;
+        padding: 6px 8px 4px !important;
+    }
+    .lat .vehicle {
+        grid-template-columns: 96px 1fr !important;
+    }
+    .lat .vehicle .v-cta {
+        grid-column: 1 / -1;
+        flex-direction: row !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        padding-top: 12px;
+        margin-top: 4px;
+        border-top: 1px solid var(--lat-border);
+    }
+}
+
+/* Mobile: long CTA labels (e.g. transfer-route pages) wrap instead of clipping */
+@media (max-width: 575.98px) {
+    .lat .btn-lg {
+        white-space: normal;
+        height: auto;
+        min-height: 56px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        line-height: 1.25;
+    }
+    /* Wide tables (check-in times, nearby cities) scroll horizontally
+       instead of being clipped by the page's overflow-x:hidden. */
+    .lat table {
+        display: block;
+        width: max-content;
+        max-width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+}
