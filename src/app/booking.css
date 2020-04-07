@@ -1,0 +1,55 @@
+@import "tailwindcss";
+
+.booking-app {
+  --color-brand: #1fa3d6;
+  --color-brand-dark: #0e8ab8;
+  font-family: var(--lat-font-body, Inter, system-ui, sans-serif);
+  color: #0a2740;
+  background: #f8fcfe;
+  isolation: isolate;
+}
+
+.booking-app .page-container {
+  @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+}
+
+.booking-app .card {
+  @apply rounded-2xl border border-slate-200 bg-white p-6 shadow-sm;
+}
+
+.booking-app .btn-primary {
+  @apply inline-flex items-center justify-center gap-2 rounded-xl px-6 py-3.5 text-sm font-semibold text-white transition disabled:cursor-not-allowed disabled:opacity-50;
+  background: var(--lat-primary-deep, #1fa3d6);
+}
+
+.booking-app .btn-primary:hover:not(:disabled) {
+  background: var(--lat-primary-mid, #4fb8e0);
+}
+
+.booking-app .btn-secondary {
+  @apply inline-flex items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-6 py-3.5 text-sm font-semibold text-slate-700 shadow-sm transition hover:bg-slate-50;
+}
+
+.booking-app .input-field {
+  @apply w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-base text-slate-900 outline-none transition focus:border-sky-500 focus:ring-4 focus:ring-sky-500/10;
+}
+
+.booking-app .input-field.is-error {
+  @apply border-red-400 focus:border-red-500 focus:ring-red-500/10;
+}
+
+.booking-app .step-active {
+  @apply bg-sky-600 text-white;
+}
+
+.booking-app .step-complete {
+  @apply bg-sky-100 text-sky-700;
+}
+
+.booking-app .step-pending {
+  @apply bg-slate-100 text-slate-400;
+}
+
+.booking-app .font-display {
+  font-family: var(--lat-font-display, Manrope, system-ui, sans-serif);
+}
