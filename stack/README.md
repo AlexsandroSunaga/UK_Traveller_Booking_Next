@@ -4,7 +4,7 @@ This folder groups the **hiring-portfolio** API and Vite product UI. It sits bes
 
 | Path | Role |
 |------|------|
-| **`api/`** | FastAPI service — quotes, bookings/orders, `GET /integrations/status`, Stripe checkout |
+| **`../backend/`** | FastAPI service — quotes, bookings/orders, `GET /integrations/status`, Stripe checkout |
 | **`product-web/`** | Vite + Mantine SPA (domain profile from `frontend-scaffold/profiles/`) |
 
 ## Run locally
