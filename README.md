@@ -14,6 +14,16 @@ Full 40-second walkthrough with captions: [docs/demo/booking-demo.mp4](docs/demo
 | **Payment** | **Confirmation** | **Admin bookings** |
 | ![Payment](docs/screenshots/04-payment.png) | ![Confirmation](docs/screenshots/05-confirmed.png) | ![Admin bookings](docs/screenshots/06-admin.png) |
 
+## Tech stack
+
+| Area | Technologies |
+|------|--------------|
+| Frontend | `Next.js (App Router)`, `React`, `TypeScript`, `Tailwind CSS`, `Mantine`, `Redux Toolkit`, `React Router`, `Vite`, `Lucide` |
+| Backend | `Next.js API routes`, `FastAPI`, `SQLAlchemy (async)`, `Pydantic`, `Zod` |
+| Database | `Prisma ORM`, `SQLite` |
+| Auth | `JWT cookies (jose)`, `bcryptjs` |
+| DevOps and tooling | `Docker`, `ESLint`, `tsx` |
+
 ## Run locally
 
 ```bash
@@ -50,7 +60,7 @@ npm run dev:fresh
 - `POST /api/bookings` — reservations  
 - `POST /api/contact` — enquiries  
 - Admin routes under `/api/admin/*`  
-- FastAPI: `stack/api/` — `POST /api/v1/quote` on port **8010**
+- FastAPI: `backend/` — `POST /api/v1/quote` on port **8010**
 - Product SPA: `stack/product-web/` (Vite, transfer profile)
 
 ## Environment
