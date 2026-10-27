@@ -99,7 +99,8 @@ export async function POST(request: NextRequest) {
         surgeMultiplier: data.surgeMultiplier,
         totalPrice: data.totalPrice,
         paymentMethod: data.paymentMethod,
-        paymentStatus: data.paymentMethod === "ONLINE" ? "PAID" : "PENDING",
+        // No payment processor is connected. Set PAID from a Stripe webhook once one is.
+        paymentStatus: "PENDING",
         flightNumber: data.flightNumber,
         passengers: data.passengers,
         luggage: data.luggage,
@@ -117,7 +118,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({
       reference: booking.reference,
       booking,
-      message: "Booking confirmed. Email and SMS notifications sent.",
+      message: "Booking confirmed. In this demo, email and SMS are written to the server log.",
     });
   } catch (error) {
     if (error instanceof z.ZodError) {

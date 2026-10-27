@@ -6,7 +6,7 @@ UK airport transfer booking platform by **Alexsandro Sunaga** (sample operator n
 
 ![Booking flow demo](docs/demo/booking-demo.gif)
 
-Full 40-second walkthrough with captions: [docs/demo/booking-demo.mp4](docs/demo/booking-demo.mp4). Recorded from the real app running locally: quote, vehicle choice, validated passenger details, payment step, confirmation, then the booking appearing in the admin dashboard.
+Full 40-second walkthrough with captions: [docs/demo/booking-demo.mp4](docs/demo/booking-demo.mp4). Recorded from the real app running locally: quote, vehicle choice, validated passenger details, a demo payment step (no payment processor is connected), confirmation, then the booking appearing in the admin dashboard.
 
 | Quote | Vehicles | Details |
 |---|---|---|
@@ -75,6 +75,21 @@ ADMIN_PASSWORD="change-me"
 GOOGLE_MAPS_API_KEY=""   # optional — built-in places work offline
 ```
 
+## Payments and notifications
+
+No payment processor is connected to the Next.js booking flow. The card form checks the format in the browser only: nothing is charged, stored or sent, and every new booking is saved with payment status `PENDING`. Email and SMS confirmations are written to the server log. The optional FastAPI service in `backend/` has a Stripe Checkout session endpoint (it needs `STRIPE_SECRET_KEY`), which the Next.js flow does not call.
+
+## Tests
+
+With the app running (`npm run build`, then `npm start`):
+
+```bash
+npm run test:smoke   # every page and the quote and places APIs return 200
+npm run test:flow    # quote -> booking -> admin login -> dashboard
+```
+
+`test:flow` also checks that a new online booking stays `PENDING`. CI runs both on every push (see `.github/workflows/ci.yml`).
+
 ## Performance notes
 
 - Content pages use ISR where configured  
@@ -102,9 +117,9 @@ prisma/              # Database schema and seed
 public/              # Static assets
 src/app/             # Next.js pages, admin, API routes
 src/components/      # Booking and layout UI
-stack/
-  api/               # FastAPI (quotes, bookings, Stripe)
-  product-web/       # Vite product SPA (optional)
+backend/             # Optional FastAPI service (quotes, bookings, Stripe Checkout endpoint)
+stack/product-web/   # Optional Vite product SPA
+scripts/             # Smoke test and booking flow test
 docs/                # Extra documentation
 ```
 

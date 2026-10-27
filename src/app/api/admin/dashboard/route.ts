@@ -5,10 +5,10 @@ import { requireAdmin } from "@/lib/auth";
 export async function GET() {
   try {
     await requireAdmin();
-    const [totalBookings, pendingBookings, totalRevenue, customers] = await Promise.all([
+    const [totalBookings, pendingBookings, bookedValue, customers] = await Promise.all([
       prisma.booking.count(),
       prisma.booking.count({ where: { status: { in: ["PENDING", "CONFIRMED"] } } }),
-      prisma.booking.aggregate({ _sum: { totalPrice: true }, where: { paymentStatus: "PAID" } }),
+      prisma.booking.aggregate({ _sum: { totalPrice: true }, where: { status: { not: "CANCELLED" } } }),
       prisma.customer.count(),
     ]);
 
@@ -22,7 +22,7 @@ export async function GET() {
       stats: {
         totalBookings,
         pendingBookings,
-        totalRevenue: totalRevenue._sum.totalPrice || 0,
+        bookedValue: bookedValue._sum.totalPrice || 0,
         customers,
       },
       recentBookings,

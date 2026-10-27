@@ -9,6 +9,9 @@ const SESSION_DURATION = 60 * 60 * 24 * 7;
 function getSecret() {
   const secret = process.env.JWT_SECRET;
   if (!secret) throw new Error("JWT_SECRET is not set");
+  if (process.env.NODE_ENV === "production" && secret.startsWith("change-me")) {
+    throw new Error("JWT_SECRET must not be the placeholder value in production");
+  }
   return new TextEncoder().encode(secret);
 }
 

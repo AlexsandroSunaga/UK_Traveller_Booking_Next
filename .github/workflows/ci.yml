@@ -1,0 +1,30 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  web:
+    runs-on: ubuntu-latest
+    env:
+      JWT_SECRET: ci-test-secret
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - run: cp .env.example .env
+      - run: npx prisma db push
+      - run: npm run db:seed
+      - run: npx tsc --noEmit
+      - run: npm run build
+      - name: Start the app and run the tests
+        run: |
+          npm start &
+          for i in $(seq 1 40); do curl -sf http://localhost:3001/ > /dev/null && break; sleep 3; done
+          npm run test:smoke
+          npm run test:flow

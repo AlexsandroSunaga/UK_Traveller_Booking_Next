@@ -10,7 +10,7 @@ type DashboardData = {
   stats: {
     totalBookings: number;
     pendingBookings: number;
-    totalRevenue: number;
+    bookedValue: number;
     customers: number;
   };
   recentBookings: Array<{
@@ -59,7 +59,7 @@ export default function AdminDashboardPage() {
   const stats = [
     { label: "Total Bookings", value: data.stats.totalBookings, icon: Calendar, color: "text-teal-600" },
     { label: "Active Bookings", value: data.stats.pendingBookings, icon: TrendingUp, color: "text-amber-600" },
-    { label: "Total Revenue", value: formatPrice(data.stats.totalRevenue), icon: PoundSterling, color: "text-green-600" },
+    { label: "Booked Value", value: formatPrice(data.stats.bookedValue), icon: PoundSterling, color: "text-green-600" },
     { label: "Customers", value: data.stats.customers, icon: Users, color: "text-blue-600" },
   ];
 
