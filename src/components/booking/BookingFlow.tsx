@@ -668,10 +668,14 @@ export function BookingFlow() {
                     {paymentVerified && (
                       <span className="inline-flex items-center gap-1 rounded-full bg-sky-100 px-2.5 py-1 text-xs font-semibold text-sky-700">
                         <Check className="h-3.5 w-3.5" />
-                        Verified
+                        Format OK
                       </span>
                     )}
                   </div>
+
+                  <p className="mt-2 text-xs text-slate-500">
+                    Demo checkout: card details are checked in your browser only. Nothing is charged, stored or sent.
+                  </p>
 
                   <div className="mt-4 space-y-3">
                     <div>

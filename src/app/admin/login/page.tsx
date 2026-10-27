@@ -6,8 +6,8 @@ import { Car, Loader2, Lock } from "lucide-react";
 
 export default function AdminLoginPage() {
   const router = useRouter();
-  const [email, setEmail] = useState("admin@example.com");
-  const [password, setPassword] = useState("admin123");
+  const [email, setEmail] = useState(process.env.NEXT_PUBLIC_DEMO_ADMIN_EMAIL ?? "");
+  const [password, setPassword] = useState(process.env.NEXT_PUBLIC_DEMO_ADMIN_PASSWORD ?? "");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
