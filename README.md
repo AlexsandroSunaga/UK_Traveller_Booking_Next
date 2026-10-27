@@ -1,6 +1,6 @@
 # Skyline Airport Transfers — Booking Platform
 
-UK airport transfer booking platform by **Alexsandro Sunaga** (sample operator names, contact details, and reviews are fictional): marketing pages, quote widget, full booking flow, contact capture, and admin dashboard. **Next.js**, **Prisma**, **SQLite/PostgreSQL**, plus portfolio **FastAPI + product SPA** under `stack/` (see `stack/README.md`).
+UK airport transfer booking platform by **Alexsandro Sunaga** (sample operator names, contact details, and reviews are fictional): marketing pages, quote widget, full booking flow, contact capture, and admin dashboard. **Next.js**, **Prisma**, **SQLite/PostgreSQL**, plus an optional **FastAPI + product SPA** under `stack/` (see `stack/README.md`).
 
 ## Demo
 
@@ -104,7 +104,7 @@ src/app/             # Next.js pages, admin, API routes
 src/components/      # Booking and layout UI
 stack/
   api/               # FastAPI (quotes, bookings, Stripe)
-  product-web/       # Vite product SPA (portfolio)
+  product-web/       # Vite product SPA (optional)
 docs/                # Extra documentation
 ```
 

@@ -1,6 +1,6 @@
-# Portfolio stack (FastAPI + product SPA)
+# Optional stack (FastAPI + product SPA)
 
-This folder groups the **hiring-portfolio** API and Vite product UI. It sits beside the main product (Next.js site, Prisma DB, etc.) in the repo root.
+This folder groups the optional API and Vite product UI. It sits beside the main product (Next.js site, Prisma DB, etc.) in the repo root.
 
 | Path | Role |
 |------|------|
