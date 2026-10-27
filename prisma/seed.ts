@@ -1,6 +1,13 @@
 import { PrismaClient } from "@prisma/client";
 import bcrypt from "bcryptjs";
 
+// Load .env when there is one; otherwise use the real environment (CI, hosting).
+try {
+  process.loadEnvFile(".env");
+} catch {
+  // no .env file
+}
+
 const prisma = new PrismaClient();
 
 async function main() {
