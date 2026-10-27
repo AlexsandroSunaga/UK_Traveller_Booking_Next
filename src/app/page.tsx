@@ -108,7 +108,6 @@ export default function HomePage() {
       opens: "00:00",
       closes: "23:59",
     },
-    aggregateRating: { "@type": "AggregateRating", ratingValue: "4.8", reviewCount: "250" },
   };
 
   return (
@@ -126,7 +125,7 @@ export default function HomePage() {
             <div className="hero-text">
               <div className="hero-headline lat-anim lat-anim-1">
                 <span className="pill pill-trust">
-                  <i className="bi bi-check2" /> Trusted since {SITE.founded} · {SITE.rating}★ from {SITE.reviewCount.toLocaleString()}+ reviews
+                  <i className="bi bi-check2" /> Fixed prices · no surge · 24/7 (fictional operator, demo site)
                 </span>
                 <h1 className="h-display" style={{ marginTop: 18, fontSize: 60, lineHeight: 1.05 }} id="hero-h1">
                   Skyline Airport Transfers — <span style={{ color: "var(--lat-primary-deep)" }}>Fixed Price Transfers, 24/7</span>
@@ -357,23 +356,18 @@ export default function HomePage() {
         <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 80px" }} className="lat-pad-d80">
           <div className="section-head" style={{ textAlign: "center", alignItems: "center" }}>
             <div className="eyebrow">What customers say</div>
-            <h2 className="h-2">Real reviews. <span style={{ color: "var(--lat-primary-deep)", fontStyle: "italic" }}>Real travellers.</span></h2>
+            <h2 className="h-2">What passengers say. <span style={{ color: "var(--lat-primary-deep)", fontStyle: "italic" }}>Sample reviews.</span></h2>
             <p className="body-lg" style={{ maxWidth: 540, margin: "8px auto 0", display: "flex", alignItems: "center", justifyContent: "center", gap: 10, flexWrap: "wrap" }}>
               <span style={{ color: "#FFCB1F", fontSize: 18, letterSpacing: 1 }}>★★★★★</span>
-              <span style={{ color: "var(--lat-ink)", fontWeight: 600 }}>Trusted by thousands of Luton travellers since {SITE.founded}</span>
+              <span style={{ color: "var(--lat-ink)", fontWeight: 600 }}>These reviews were written for this demo</span>
             </p>
           </div>
         </div>
         <ReviewsBeltLazy />
         <div style={{ textAlign: "center", marginTop: 28 }}>
-          <a
-            href="#reviews"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{ color: "var(--lat-primary-deep)", fontWeight: 600, fontSize: 14 }}
-          >
+          <p style={{ color: "var(--lat-primary-deep)", fontWeight: 600, fontSize: 14 }}>
             Sample reviews shown for demo purposes
-          </a>
+          </p>
         </div>
       </section>
 

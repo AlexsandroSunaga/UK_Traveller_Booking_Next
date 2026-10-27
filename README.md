@@ -6,7 +6,7 @@ UK airport transfer booking platform by **Alexsandro Sunaga** (sample operator n
 
 ![Booking flow demo](docs/demo/booking-demo.gif)
 
-Full 40-second walkthrough with captions: [docs/demo/booking-demo.mp4](docs/demo/booking-demo.mp4). Recorded from the real app running locally: quote, vehicle choice, validated passenger details, a demo payment step (no payment processor is connected), confirmation, then the booking appearing in the admin dashboard.
+Full 50-second walkthrough with captions: [docs/demo/booking-demo.mp4](docs/demo/booking-demo.mp4). Recorded from the real app running locally: pickup and drop-off with suggestions, a fixed-price quote for every vehicle, passenger details, a demo payment step (the card is only checked in the browser), the confirmation with its reference, then the admin dashboard and the booking in the bookings list with payment `PENDING`.
 
 | Quote | Vehicles | Details |
 |---|---|---|

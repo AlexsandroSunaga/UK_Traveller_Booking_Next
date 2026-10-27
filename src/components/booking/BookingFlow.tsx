@@ -627,7 +627,7 @@ export function BookingFlow() {
               <p className="text-slate-600">Choose how you&apos;d like to pay for your transfer.</p>
 
               {[
-                { value: "ONLINE", label: "Pay online now", desc: "Secure card payment — confirmation sent instantly" },
+                { value: "ONLINE", label: "Pay online now", desc: "Demo checkout: the card is only checked in your browser, nothing is charged" },
                 { value: "CARD_TO_DRIVER", label: "Pay driver by card", desc: "Card payment to driver on arrival" },
                 { value: "CASH", label: "Pay driver in cash", desc: "Cash payment to driver on arrival" },
               ].map((opt) => (
@@ -743,7 +743,7 @@ export function BookingFlow() {
                       onClick={() => validatePaymentStep()}
                       className="btn-secondary w-full sm:w-auto"
                     >
-                      Verify card
+                      Check card details
                     </button>
                   </div>
                 </div>
@@ -774,7 +774,7 @@ export function BookingFlow() {
                 </span>
               </p>
               <p className="mt-4 text-sm leading-relaxed text-slate-500">
-                Confirmation email and SMS sent. We&apos;ll monitor your flight if provided — see you at pickup.
+                Your booking is saved. This is a demo, so no email or SMS is sent and no payment is taken.
               </p>
               <button onClick={() => router.push("/")} className="btn-primary mt-8 px-8">
                 Back to home
